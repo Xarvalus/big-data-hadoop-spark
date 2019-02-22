@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  cloudera:
+    image: cloudera/quickstart:imported-from-download
+    hostname: quickstart.cloudera
+    privileged: true
+    # https://www.cloudera.com/documentation/enterprise/5-2-x/topics/cdh_ig_ports_cdh5.html
+    ports:
+      - 8888:8888 # Hue
+      - 7180:7180 # Cloudera Manager
+      - 8080:80   # Guided Tutorial
+    volumes:
+      - ./jobs:/big-data-hadoop-spark
+    stdin_open: true
+    tty: true
+    command:
+      - /usr/bin/docker-quickstart
